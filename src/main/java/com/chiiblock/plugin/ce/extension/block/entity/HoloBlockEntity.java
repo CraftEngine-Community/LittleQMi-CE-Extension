@@ -36,7 +36,6 @@ public class HoloBlockEntity extends BlockEntity implements DynamicBlockEntityRe
     private static final int VERSION = 1;
     boolean requireUpdate = false;
     private final HoloBlockBehavior behavior;
-    private boolean display;
 
     private final DynamicTextDisplayElement textDisplay;
     private final DynamicTextDisplayElement.Config textConfig;
@@ -49,7 +48,6 @@ public class HoloBlockEntity extends BlockEntity implements DynamicBlockEntityRe
         this.blockEntityRenderer = this;
         this.textConfig = new DynamicTextDisplayElement.Config(this.behavior.textConfig());
         this.textDisplay = new DynamicTextDisplayElement(textConfig, pos);
-        this.display = textDisplay.display();
         MiniMessage mini = MiniMessage.miniMessage();
         I18NTag i18 = I18NTag.instance();
         Component fixedLabel = mini.deserialize(this.behavior.billboardFixedLabel(), i18);
@@ -80,7 +78,6 @@ public class HoloBlockEntity extends BlockEntity implements DynamicBlockEntityRe
                 billboard = b;
             }
         }
-        this.display = display;
         this.textDisplay.setDisplay(display);
         this.textConfig.setText(text);
         this.textConfig.setTranslation(translationX, translationY, translationZ);
@@ -288,13 +285,16 @@ public class HoloBlockEntity extends BlockEntity implements DynamicBlockEntityRe
     }
 
     private void updateDisplayBlockState(boolean display) {
-        if (display == this.display) return;
-        this.display = display;
+        if (display == display()) return;
         ImmutableBlockState state = super.world.getBlockStateAtIfLoaded(this.pos);
         if (state == null || state.behavior() != this.behavior) return;
         Property<Boolean> property = this.behavior.displayProperty();
         if (property == null) return;
         super.world.world().setBlockAt(this.pos.x(), this.pos.y(), this.pos.z(), state.with(property, display), UpdateOption.UPDATE_ALL.flags());
+    }
+
+    private boolean display() {
+        return textDisplay.display();
     }
 
     @Override

@@ -6,11 +6,13 @@
 
 Version: 1.21.8+
 
-Wiki: plan
+Wiki: planned
 ## Mention
 
 This extension do not support Folia currently. \
-It require dealing those scheduling stuff, which I believe isn't that hard but I don't find time to do so.
+\
+This project requires a majority of rework and I do not know yet what need to be done. \
+I haven't gather much time to keep tracks of latest updates of CE due to my university career. One of my biggest hope is to bring what I learned back to here and implement it. I will find the time recently and continuous work on this project.
 
 ## Feature
 Unstable - minor issues exist and still need to be fixed. \
