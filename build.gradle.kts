@@ -11,16 +11,18 @@ repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://repo.momirealms.net/releases/")
+    maven("https://repo.momirealms.net/snapshots/")
     maven(url = "https://mvn.lumine.io/repository/maven-public/")
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
     // Local Lib
-    // compileOnly(files("${rootProject.rootDir}/libs/craft-engine-core-${rootProject.properties["craftengine_version"]}.jar"))
-    // compileOnly(files("${rootProject.rootDir}/libs/craft-engine-bukkit-${rootProject.properties["craftengine_version"]}.jar"))
+    //compileOnly(files("${rootProject.rootDir}/libs/craft-engine-core-${rootProject.properties["craftengine_version"]}.jar"))
+    //compileOnly(files("${rootProject.rootDir}/libs/craft-engine-bukkit-${rootProject.properties["craftengine_version"]}.jar"))
     compileOnly("net.momirealms:craft-engine-core:${rootProject.properties["craftengine_version"]}")
     compileOnly("net.momirealms:craft-engine-bukkit:${rootProject.properties["craftengine_version"]}")
+    compileOnly("net.momirealms:craft-engine-adventure:${rootProject.properties["craftengine_version"]}")
     compileOnly("net.momirealms:craft-engine-nms-helper:${rootProject.properties["nms_helper_version"]}")
     compileOnly("io.lumine:Mythic-Dist:5.9.0")
 }
